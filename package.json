@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "prepare": "husky install",
-    "format:fix": "prettier --write . --cache --ignore-path .gitignore",
-    "lint-staged": "lint-staged"
+    "format:fix": "prettier --write . --cache --ignore-path .gitignore"
   },
   "lint-staged": {
     "*.{ts, tsx}": [
