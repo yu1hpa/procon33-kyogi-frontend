@@ -1,29 +1,28 @@
+@import "../styles/utils";
 .wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
+  @include wrapper;
   &__table {
     display: flex;
     justify-content: center;
     margin: 0 auto;
   }
-}
-
-.match_table {
-  margin: 3px auto;
-  font-size: 18px;
-  thead th {
-    padding: 10px;
-    width: auto;
-    text-align: center;
-  }
-  tbody td {
-    max-width: 300px;
-    padding: 7px 10px;
-    text-align: left;
-    border-top: 2px solid #ccc;
-  }
-  span {
-    margin: 3px;
-    padding: 7px 2px;
+  .match_table {
+    margin: 3px auto;
+    font-size: 18px;
+    thead th {
+      padding: 10px;
+      width: auto;
+      text-align: center;
+    }
+    tbody td {
+      max-width: 300px;
+      padding: 7px 10px;
+      text-align: left;
+      border-top: 2px solid #ccc;
+    }
+    span {
+      margin: 3px;
+      padding: 7px 2px;
+    }
   }
 }
