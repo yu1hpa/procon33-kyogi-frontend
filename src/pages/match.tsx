@@ -1,10 +1,5 @@
 import styles from "./match.module.scss";
-
-export type Match = {
-  problems: number;
-  bonus_factor: number[];
-  penalty: number;
-};
+import type { Match } from "../types";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
@@ -14,7 +9,6 @@ export const getStaticProps = async () => {
   const res = await fetch(`${process.env.HOST}/match`, {
     method: "get",
     headers: {
-      "Context-Type": "application/json",
       "procon-token": process.env.PROCON_TOKEN,
     },
   });
