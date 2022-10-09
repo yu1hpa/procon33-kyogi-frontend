@@ -1,0 +1,19 @@
+@import "../styles/utils";
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  &__element {
+    @include clickable;
+    background-color: #fdd835;
+    padding: 20px;
+    align-items: center;
+    border-radius: 20px;
+  }
+  .text {
+    color: black;
+    flex-shrink: 0;
+    word-break: break-all;
+  }
+}
