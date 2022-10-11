@@ -2,9 +2,7 @@
 .wrapper {
   @include wrapper;
   &__table {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+    @include center;
   }
   .match_table {
     margin: 3px auto;
