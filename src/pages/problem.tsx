@@ -2,17 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../component/Button";
 import type { Problem } from "../types";
 import styles from "./problem.module.scss";
-
-type Props = {
-  PROCON_TOKEN: string;
-  HOST: string;
-};
-
-type AnswerResponse = {
-  problem_id: string;
-  answers: string[];
-  accepted_at: number;
-};
+import { Props, AnswerResponse } from "../types";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
