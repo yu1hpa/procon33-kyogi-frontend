@@ -1,0 +1,27 @@
+@import "../styles/utils";
+.wrapper {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 10px;
+  &__main {
+    @include center;
+    padding: 20px 5px;
+    box-shadow: 5px 4px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgb(54, 54, 54);
+  }
+  .main {
+    text-align: center;
+    &__h1 {
+      font-size: 3em;
+      color: #ffc107;
+    }
+    &__link {
+      font-size: 1.5em;
+      color: white;
+    }
+    &__link:hover {
+      color: #26a69a;
+    }
+  }
+}
