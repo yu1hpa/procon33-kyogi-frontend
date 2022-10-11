@@ -11,3 +11,8 @@
   cursor: pointer;
   user-select: none;
 }
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+}
