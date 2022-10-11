@@ -1,0 +1,18 @@
+@import "../styles/utils";
+.wrapper {
+  @include wrapper;
+  &__chunks {
+    @include center;
+  }
+  .chunks {
+    margin: 5px;
+    padding: 3px;
+  }
+
+  &__input {
+    @include center;
+  }
+  .form {
+    text-align: center;
+  }
+}
