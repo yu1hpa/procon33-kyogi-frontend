@@ -1,25 +1,45 @@
 import styles from "./match.module.scss";
-import type { Match } from "../types";
+import type { MatchProps, Props } from "../types";
+import useSWR from "swr";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
     return;
   }
 
-  const res = await fetch(`${process.env.HOST}/match`, {
-    method: "get",
-    headers: {
-      "procon-token": process.env.PROCON_TOKEN,
+  return {
+    props: {
+      PROCON_TOKEN: process.env.PROCON_TOKEN,
+      HOST: process.env.HOST,
     },
-  });
-  const match: Match = await res.json();
-  return { props: match };
+  };
 };
 
-const Match = (match: Match) => {
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+const Match = (props: Props) => {
+  const { data: match, error } = useSWR<MatchProps, Error>(
+    [
+      `${props.HOST}/match`,
+      {
+        headers: {
+          "procon-token": props.PROCON_TOKEN,
+        },
+      },
+    ],
+    fetcher
+  );
+
+  if (typeof error !== "undefined") {
+    return (
+      <>
+        <p>{error.message}</p>
+      </>
+    );
+  }
   return (
     <div className={styles.wrapper}>
-      {typeof match === "undefined" ? (
+      {!match ? (
         <p>loading...</p>
       ) : (
         <>
