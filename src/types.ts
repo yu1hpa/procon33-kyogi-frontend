@@ -3,7 +3,7 @@ export type Props = {
   HOST: string;
 };
 
-export type Match = {
+export type MatchProps = {
   problems: number;
   bonus_factor: number[];
   penalty: number;
