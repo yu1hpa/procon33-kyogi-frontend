@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { useState } from "react";
-import type { Props } from "../types";
-import styles from "./chunks.module.scss";
 import { IoMdDownload } from "react-icons/io";
-import Input from "../component/Input";
+
 import Button from "../component/Button";
+import Input from "../component/Input";
+
+import styles from "./chunks.module.scss";
+
+import type { Props } from "../types";
 
 type Chunks = {
   chunks: string[];
