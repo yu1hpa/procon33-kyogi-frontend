@@ -1,6 +1,7 @@
 import styles from "./match.module.scss";
 import type { MatchProps, Props } from "../types";
 import useSWR from "swr";
+import { fetcher } from "../commons";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
@@ -14,8 +15,6 @@ export const getStaticProps = async () => {
     },
   };
 };
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Match = (props: Props) => {
   const { data: match, error } = useSWR<MatchProps, Error>(
