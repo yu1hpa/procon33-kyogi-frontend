@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../component/Button";
-import type { Problem } from "../types";
+import type { Props, Problem, AnswerResponse } from "../types";
 import styles from "./problem.module.scss";
-import { Props, AnswerResponse } from "../types";
+import useSWR from "swr";
+import { fetcher } from "../commons";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
@@ -18,23 +19,19 @@ export const getStaticProps = async () => {
 };
 
 const Problem = (props: Props) => {
-  const [problem, setProblem] = useState<Problem>();
   const [ansresp, setAnsResp] = useState<AnswerResponse>();
 
-  async function fetchProblem(props: Props) {
-    const res = await fetch(`${props.HOST}/problem`, {
-      method: "get",
-      headers: {
-        "procon-token": props.PROCON_TOKEN,
+  const { data: problem, error } = useSWR<Problem, Error>(
+    [
+      `${props.HOST}/problem`,
+      {
+        headers: {
+          "procon-token": props.PROCON_TOKEN,
+        },
       },
-    });
-    const json: Problem = await res.json();
-    setProblem(json);
-  }
-
-  useEffect(() => {
-    fetchProblem(props);
-  }, [props]);
+    ],
+    fetcher
+  );
 
   if (typeof problem === "undefined") {
     return;
@@ -58,9 +55,16 @@ const Problem = (props: Props) => {
       }),
     });
     const json: AnswerResponse = await res.json();
-    console.log(json);
     setAnsResp(json);
   };
+
+  if (typeof error !== "undefined") {
+    return (
+      <>
+        <p>{error.message}</p>
+      </>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>
