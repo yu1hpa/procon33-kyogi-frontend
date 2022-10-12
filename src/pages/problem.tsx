@@ -1,9 +1,12 @@
 import { useState } from "react";
-import Button from "../component/Button";
-import type { Props, Problem, AnswerResponse } from "../types";
-import styles from "./problem.module.scss";
 import useSWR from "swr";
+
 import { fetcher } from "../commons";
+import Button from "../component/Button";
+
+import styles from "./problem.module.scss";
+
+import type { Props, Problem, AnswerResponse } from "../types";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {

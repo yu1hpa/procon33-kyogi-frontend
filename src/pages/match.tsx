@@ -1,7 +1,10 @@
-import styles from "./match.module.scss";
-import type { MatchProps, Props } from "../types";
 import useSWR from "swr";
+
 import { fetcher } from "../commons";
+
+import styles from "./match.module.scss";
+
+import type { MatchProps, Props } from "../types";
 
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
