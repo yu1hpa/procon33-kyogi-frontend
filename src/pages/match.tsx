@@ -1,3 +1,4 @@
+import { FiAlertCircle } from "react-icons/fi";
 import useSWR from "swr";
 
 import { fetcher } from "../commons";
@@ -34,9 +35,16 @@ const Match = (props: Props) => {
 
   if (typeof error !== "undefined") {
     return (
-      <>
-        <p>{error.message}</p>
-      </>
+      <div className={styles.wrapper}>
+        <div className={styles.wrapper__center}>
+          <div className={styles.error}>
+            <div>
+              <FiAlertCircle className={styles.icon} />
+              <span>{error.message}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
   return (
