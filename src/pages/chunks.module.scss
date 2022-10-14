@@ -1,7 +1,7 @@
 @import "../styles/utils";
 .wrapper {
   @include wrapper;
-  &__chunks {
+  &__center {
     @include center;
   }
   .chunks {

@@ -75,14 +75,14 @@ const Chunks = (props: Props) => {
           </form>
         </div>
         {typeof chunks === "undefined" ? (
-          <div className={styles.wrapper__chunks}>
+          <div className={styles.wrapper__center}>
             <p>まだ取得していません</p>
           </div>
         ) : (
           <>
             {chunks.chunks.map((v) => {
               return (
-                <div className={styles.wrapper__chunks} key={v.toString()}>
+                <div className={styles.wrapper__center} key={v.toString()}>
                   <ul>
                     <li>
                       <div className={styles.chunks}>
