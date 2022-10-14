@@ -3,6 +3,7 @@ import useSWR from "swr";
 
 import { fetcher } from "../commons";
 import Button from "../component/Button";
+import ErrorCard from "../component/ErrorCard";
 
 import styles from "./problem.module.scss";
 
@@ -36,10 +37,11 @@ const Problem = (props: Props) => {
     fetcher
   );
 
-  if (typeof problem === "undefined") {
-    return;
+  if (typeof error !== "undefined") {
+    return <ErrorCard>{error.message}</ErrorCard>;
   }
 
+  if (typeof problem === "undefined") return;
   const problemStartAt = new Date(problem.starts_at * 1000).toLocaleTimeString(
     "ja-JP"
   );
@@ -60,14 +62,6 @@ const Problem = (props: Props) => {
     const json: AnswerResponse = await res.json();
     setAnsResp(json);
   };
-
-  if (typeof error !== "undefined") {
-    return (
-      <>
-        <p>{error.message}</p>
-      </>
-    );
-  }
 
   return (
     <div className={styles.wrapper}>
