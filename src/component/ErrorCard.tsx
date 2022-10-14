@@ -8,14 +8,10 @@ type Props = {
 };
 const ErrorCard = ({ children }: Props) => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.wrapper__center}>
-        <div className={styles.error}>
-          <div>
-            <FiAlertCircle className={styles.icon} />
-            <span>{children}</span>
-          </div>
-        </div>
+    <div className={styles.error}>
+      <div>
+        <FiAlertCircle className={styles.icon} />
+        <span>{children}</span>
       </div>
     </div>
   );
