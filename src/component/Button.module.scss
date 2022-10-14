@@ -2,7 +2,6 @@
 
 .button {
   margin: 10px;
-  text-align: center;
   &__element {
     @include clickable;
     background-color: #fdd835;
