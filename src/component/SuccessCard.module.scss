@@ -1,0 +1,17 @@
+@import "../styles/utils";
+
+.success {
+  @include center;
+  background-color: #a1c8ff;
+  width: 480px;
+  border-radius: 10px;
+  padding: 20px 10px;
+  .icon {
+    margin-right: 5px;
+    vertical-align: -2.5px;
+  }
+  span {
+    text-align: center;
+    color: rgb(54, 54, 54);
+  }
+}
