@@ -1,7 +1,7 @@
 @import "../styles/utils";
 .wrapper {
   @include wrapper;
-  &__table {
+  &__center {
     @include center;
   }
   .table__problem {
@@ -24,12 +24,8 @@
     }
   }
 
-  &__answer {
-    display: flex;
-    justify-content: center;
-    .container_answer {
-      margin: 10px;
-      padding: 10px;
-    }
+  .container_answer {
+    margin: 10px;
+    padding: 10px;
   }
 }

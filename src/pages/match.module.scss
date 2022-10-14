@@ -1,7 +1,7 @@
 @import "../styles/utils";
 .wrapper {
   @include wrapper;
-  &__table {
+  &__center {
     @include center;
   }
   .match_table {

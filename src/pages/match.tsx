@@ -34,7 +34,11 @@ const Match = (props: Props) => {
   );
 
   if (typeof error !== "undefined") {
-    return <ErrorCard>{error.message}</ErrorCard>;
+    return (
+      <div className={styles.wrapper__center}>
+        <ErrorCard>{error.message}</ErrorCard>
+      </div>
+    );
   }
 
   return (
@@ -43,7 +47,7 @@ const Match = (props: Props) => {
         <p>loading...</p>
       ) : (
         <>
-          <div className={styles.wrapper__table}>
+          <div className={styles.wrapper__center}>
             <table className={styles.match_table}>
               <thead>
                 <tr>
