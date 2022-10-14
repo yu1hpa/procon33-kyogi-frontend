@@ -10,6 +10,10 @@ import styles from "./problem.module.scss";
 
 import type { Props, Problem, AnswerResponse } from "../types";
 
+type Answers = {
+  answers: string[];
+};
+
 export const getStaticProps = async () => {
   if (typeof process.env.PROCON_TOKEN === "undefined") {
     return;
@@ -24,6 +28,7 @@ export const getStaticProps = async () => {
 };
 
 const Problem = (props: Props) => {
+  const [answers, setAnswers] = useState<Answers>();
   const [ansresp, setAnsResp] = useState<AnswerResponse>();
   const [isSendSuccess, setSendSuccess] = useState<boolean>();
 
@@ -87,6 +92,21 @@ const Problem = (props: Props) => {
     }
   };
 
+  const handleGetAnswers = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_PREDICT_ENDPOINT}`, {
+        method: "get",
+      });
+      if (res.ok) {
+        const json: Answers = await res.json();
+        console.log(json);
+        setAnswers(json);
+      }
+    } catch {
+      console.log("ansersを取得する際にエラーが発生");
+    }
+  };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -123,7 +143,12 @@ const Problem = (props: Props) => {
         </div>
 
         <div>
-          <Button text="重ね合わせ数を送信" onClick={handleClickSendStacknum} />
+          <div className={styles.wrapper__center}>
+            <Button
+              text="重ね合わせ数を送信"
+              onClick={handleClickSendStacknum}
+            />
+          </div>
           {typeof isSendSuccess !== "undefined" ? (
             <div className={styles.wrapper__center}>
               {isSendSuccess === true ? (
@@ -134,6 +159,31 @@ const Problem = (props: Props) => {
             </div>
           ) : (
             <></>
+          )}
+        </div>
+
+        <div>
+          <div className={styles.wrapper__center}>
+            <Button text="answersを取得" onClick={handleGetAnswers} />
+          </div>
+          {typeof answers !== "undefined" ? (
+            <div className={styles.wrapper__center}>
+              {'{"answers": '}
+              {answers.answers.map((v) => {
+                return [
+                  <span key={v}>
+                    {'"'}
+                    {v}
+                    {'"'}
+                  </span>,
+                ];
+              })}
+              {"}"}
+            </div>
+          ) : (
+            <div className={styles.wrapper__center}>
+              <p>まだ取得していません</p>
+            </div>
           )}
         </div>
 
