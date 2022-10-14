@@ -59,6 +59,9 @@ const Problem = (props: Props) => {
 
   // 問題の回答
   const handleClick = async () => {
+    if (typeof answers === "undefined") {
+      return;
+    }
     const res = await fetch(`${props.HOST}/problem`, {
       method: "post",
       headers: {
@@ -67,7 +70,7 @@ const Problem = (props: Props) => {
       },
       body: JSON.stringify({
         problem_id: problem.id,
-        answers: ["01", "02"], // 何かしらで受け取った値を渡す
+        answers: answers.answers,
       }),
     });
     const json: AnswerResponse = await res.json();
