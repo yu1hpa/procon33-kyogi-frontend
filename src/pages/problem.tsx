@@ -40,7 +40,11 @@ const Problem = (props: Props) => {
   );
 
   if (typeof error !== "undefined") {
-    return <ErrorCard>{error.message}</ErrorCard>;
+    return (
+      <div className={styles.wrapper__center}>
+        <ErrorCard>{error.message}</ErrorCard>;
+      </div>
+    );
   }
 
   if (typeof problem === "undefined") return;
