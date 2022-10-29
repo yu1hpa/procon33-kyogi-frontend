@@ -47,13 +47,13 @@ const Problem = (props: Props) => {
   if (typeof error !== "undefined") {
     return (
       <div className={styles.wrapper__center}>
-        <ErrorCard>{error.message}</ErrorCard>;
+        <ErrorCard>{error.message}</ErrorCard>
       </div>
     );
   }
 
   if (typeof problem === "undefined") return;
-  const problemStartAt = new Date(problem.starts_at * 1000).toLocaleTimeString(
+  const problemStartAt = new Date(problem.start_at * 1000).toLocaleTimeString(
     "ja-JP"
   );
 
@@ -89,6 +89,7 @@ const Problem = (props: Props) => {
           data: problem.data,
         }),
       });
+      console.log(res);
       setSendSuccess(true);
     } catch {
       setSendSuccess(false);

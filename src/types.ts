@@ -12,7 +12,8 @@ export type MatchProps = {
 export type Problem = {
   id: string;
   chunks: number;
-  starts_at: number;
+  //本番サーバではstarts_atからstart_atに変更
+  start_at: number;
   time_limit: number;
   data: number;
 };

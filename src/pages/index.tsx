@@ -1,11 +1,42 @@
 import Head from "next/head";
 import Link from "next/link";
 
+import Button from "../component/Button";
+import { Props } from "../types";
+
 import styles from "./index.module.scss";
 
 import type { NextPage } from "next";
 
-const Home: NextPage = () => {
+export const getStaticProps = async () => {
+  if (typeof process.env.PROCON_TOKEN === "undefined") {
+    return;
+  }
+
+  return {
+    props: {
+      PROCON_TOKEN: process.env.PROCON_TOKEN,
+      HOST: process.env.HOST,
+    },
+  };
+};
+
+const Home: NextPage<Props> = (props) => {
+  const handleClick = async () => {
+    try {
+      const res = await fetch(`${props.HOST}/test`, {
+        headers: {
+          "procon-token": props.PROCON_TOKEN,
+        },
+      });
+      if (res.status === 200) {
+        console.log(res.statusText);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -24,6 +55,9 @@ const Home: NextPage = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className={styles.wrapper__center}>
+          <Button text="/testにリクエスト" onClick={handleClick} />
         </div>
       </main>
     </div>
