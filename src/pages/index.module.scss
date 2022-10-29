@@ -3,6 +3,9 @@
   max-width: 1200px;
   margin: 10px auto;
   padding: 10px;
+  &__center {
+    @include center;
+  }
   &__main {
     @include center;
     padding: 20px 5px;
